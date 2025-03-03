@@ -7,7 +7,10 @@ public class BronzeBankAccount extends DecoratorBankAccount {
     }
 
     @Override
-    public int getFee(int amount) {
-        return amount < 100 ? amount : amount + 1;
+    public void withdraw(int amount) {
+        if(base.getBalance() - amount < 0)
+            throw new IllegalStateException();
+        super.withdraw(amount < 100 ? amount : amount + 1);
     }
+
 }

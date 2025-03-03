@@ -14,17 +14,6 @@ public class DecoratorBankAccount implements BankAccount{
     public void deposit(int amount) { base.deposit(amount); };
 
     public void withdraw(int amount) {
-        if (canWithdraw(amount)){
-            throw new IllegalStateException();
-        }
-        base.withdraw(amount + getFee(amount));
+        base.withdraw(amount);
     };
-
-    public int getFee(int amount) {
-        return 0;
-    }
-
-    public boolean canWithdraw(int amount) {
-        return (base.getBalance() - amount < 0);
-    }
 }

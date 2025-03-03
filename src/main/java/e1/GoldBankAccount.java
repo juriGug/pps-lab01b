@@ -7,8 +7,10 @@ public class GoldBankAccount extends DecoratorBankAccount {
     }
 
     @Override
-    public boolean canWithdraw(int amount) {
+    public void withdraw(int amount) {
         int overdraft = 500;
-        return this.getBalance() + overdraft < amount;
+        if(base.getBalance() - amount + overdraft < 0)
+            throw new IllegalStateException();
+        super.withdraw(amount);
     }
 }
