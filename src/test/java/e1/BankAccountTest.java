@@ -10,9 +10,13 @@ public abstract class BankAccountTest {
 
     protected DecoratorBankAccount account;
 
+    public BankAccountTest(DecoratorBankAccount bankAccount) {
+        account = bankAccount;
+    }
+
     @BeforeEach
     void init(){
-        this.account = new SilverBankAccount(new CoreBankAccount());
+        this.account = new GoldBankAccount(new CoreBankAccount());
     }
 
     @Test
